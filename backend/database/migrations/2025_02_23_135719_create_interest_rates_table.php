@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('interest_rates', function (Blueprint $table) {
             $table->id();
+            $table->date('date')->unique();
+            $table->decimal('rate', 5, 2);
             $table->timestamps();
         });
     }
