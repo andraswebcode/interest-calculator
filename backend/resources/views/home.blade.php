@@ -8,7 +8,7 @@
 </head>
 <body>
 	<app-root></app-root>
-	<script src="{{ frontend_asset('polyfills.js') }}"></script>
-	<script src="{{ frontend_asset('main.js') }}"></script>
+	<script src="{{ frontend_asset('polyfills.js') }}" type="module"></script>
+	<script src="{{ frontend_asset('main.js') }}" type="module"></script>
 </body>
 </html>
