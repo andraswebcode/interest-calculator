@@ -6,8 +6,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { tap } from 'rxjs';
+import { catchError, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,7 @@ export class LoginComponent {
   constructor(
     private readonly authService: AuthService,
 		private readonly router: Router,
+		private readonly snackBar: MatSnackBar,
 		private readonly destroyRef: DestroyRef
   ){}
 
@@ -36,7 +38,11 @@ export class LoginComponent {
 			this.authService
 				.login(this.email, this.password)
 				.pipe(
-					tap(() => this.router.navigate(['/data'])),
+					tap(() => this.router.navigate(['/dashboard'])),
+					catchError((error) => {
+						this.snackBar.open(error.error.message, '', { duration: 4000 });
+						throw error;
+					}),
 					takeUntilDestroyed(this.destroyRef)
 				)
 				.subscribe();
