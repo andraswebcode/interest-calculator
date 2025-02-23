@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
 	private readonly CURRENT_USER_KEY = 'currentUser';
-	private readonly API_URL = '/api/login';
+	private readonly API_URL = 'http://34.0.242.199:8080/api/login';
 	private readonly _user = signal<User | null>(null);
 
 	constructor(
