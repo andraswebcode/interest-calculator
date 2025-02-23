@@ -13,7 +13,7 @@ class InterestController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([]);
     }
 
     /**
@@ -21,30 +21,6 @@ class InterestController extends Controller
      */
     public function store(StoreInterestRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Interest $interest)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateInterestRequest $request, Interest $interest)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Interest $interest)
-    {
-        //
+        return response()->json([]);
     }
 }
