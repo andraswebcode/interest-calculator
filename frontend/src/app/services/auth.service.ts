@@ -26,7 +26,15 @@ export class AuthService {
 		return this._user() !== null;
 	}
 
-	public login(username: string, password: string) {}
+	public login(username: string, password: string) {
+		return new Observable<User>((observer) => {
+			observer.next({
+				name:'',
+				email:'',
+				token:''
+			});
+		});
+	}
 
 	public logout() {
 		return new Observable<boolean>((observer) => {
