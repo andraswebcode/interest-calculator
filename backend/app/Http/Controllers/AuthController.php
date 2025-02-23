@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -13,6 +14,35 @@ class AuthController extends Controller
      */
 
     public function login(Request $request){
-        return response()->json([]);
+        $request->validate([
+			'email' => 'required|email',
+			'password' => 'required'
+		]);
+
+		$email = $request->input('email');
+		$password = $request->input('password');
+		$user = User::where('email', $email)->first();
+
+		if (!$user) {
+			return response()->json([
+				'message' => 'The email is not registered.',
+			], 401);
+		}
+
+		if (!Hash::check($password, $user->password)) {
+			return response()->json([
+				'message' => 'The password is not match.',
+			], 401);
+		}
+
+		$user->tokens()->delete();
+		$token = $user->createToken('access')->plainTextToken;
+
+        return response()->json([
+            'id' => $user->id,
+			'name' => $user->name,
+			'email' => $user->email,
+			'token' => $token
+        ]);
     }
 }
