@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateInterestRequest;
 use App\Models\Interest;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class InterestController extends Controller
 {
@@ -29,13 +30,15 @@ class InterestController extends Controller
         $amount = floatval($validated['amount']);
         $excel_file = storage_path('app/private/alapkamat.xlsx');
         $rows = Excel::toArray([], $excel_file)[0];
+        $rows = array_slice($rows, 1); // The first row contains the titles.
         $interest_rates = [];
 
         foreach ($rows as $row) {
             if (!empty($row[0]) && !empty($row[1])) {
-                $date = Carbon::createFromFormat('Y-m-d', $row[0])->format('Y-m-d');
+                $excel_date = $row[0];  // Pl. 45560
+                $date = Carbon::createFromFormat('Y-m-d', Date::excelToDateTimeObject($excel_date)->format('Y-m-d'));
                 $rate = floatval(str_replace(',', '.', str_replace('%', '', $row[1])));
-                $interest_rates[$date] = $rate;
+                $interest_rates[$date->format('Y-m-d')] = $rate;
             }
         }
 
