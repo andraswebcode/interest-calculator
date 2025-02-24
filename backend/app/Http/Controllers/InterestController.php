@@ -28,7 +28,7 @@ class InterestController extends Controller
         $end_date = Carbon::parse($validated['end_date']);
         $amount = floatval($validated['amount']);
         $excel_file = storage_path('app/private/alapkamat.xlsx');
-        $rows = Excel::toArray([], $filePath)[0];
+        $rows = Excel::toArray([], $excel_file)[0];
         $interest_rates = [];
 
         foreach ($rows as $row) {
