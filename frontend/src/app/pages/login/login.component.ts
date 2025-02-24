@@ -14,10 +14,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   selector: 'app-login',
   imports: [
     MatCardModule,
-		MatButtonModule,
-		MatFormFieldModule,
-		MatInputModule,
-		FormsModule
+	MatButtonModule,
+	MatFormFieldModule,
+	MatInputModule,
+	FormsModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -28,9 +28,9 @@ export class LoginComponent {
 
   constructor(
     private readonly authService: AuthService,
-		private readonly router: Router,
-		private readonly snackBar: MatSnackBar,
-		private readonly destroyRef: DestroyRef
+	private readonly router: Router,
+	private readonly snackBar: MatSnackBar,
+	private readonly destroyRef: DestroyRef
   ){}
 
   public login() {
