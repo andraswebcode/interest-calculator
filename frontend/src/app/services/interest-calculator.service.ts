@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Interest } from '../types/interest';
 import { Observable } from 'rxjs';
+import { User } from '../types/user';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,27 @@ export class InterestCalculatorService {
     private http: HttpClient
   ) { }
 
-  calcInterest(data: Omit<Interest, 'interest'>): Observable<Interest> {
-    return this.http.post<Interest>(this.API_URL, data);
+  calcInterest(data: Omit<Interest, 'id' | 'interest'>): Observable<Interest> {
+    console.log(data);
+    
+    const headers = this.getHeaders();
+    return this.http.post<Interest>(this.API_URL, data, {
+      headers
+    });
   }
 
   getInterests(): Observable<Interest[]> {
-    return this.http.get<Interest[]>(this.API_URL);
+    const headers = this.getHeaders();
+    return this.http.get<Interest[]>(this.API_URL, {
+      headers
+    });
+  }
+
+  private getHeaders() {
+    const userData: User = JSON.parse(localStorage.getItem('currentUser') || '{}');
+
+    return {
+      'Authorization': 'Bearer ' + userData.token
+    };
   }
 }

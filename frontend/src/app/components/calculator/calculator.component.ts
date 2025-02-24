@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
 import { InterestCalculatorService } from '../../services/interest-calculator.service';
-import { MatDatepickerModule, MatDateRangeInput } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { FormsModule } from '@angular/forms';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-calculator',
-  imports: [MatDatepickerModule],
+  imports: [FormsModule ,MatFormFieldModule, MatInputModule, MatButtonModule, MatDatepickerModule],
   templateUrl: './calculator.component.html',
   styleUrl: './calculator.component.scss'
 })
@@ -16,4 +21,14 @@ export class CalculatorComponent {
   constructor(
     private readonly icService: InterestCalculatorService
   ){}
+
+  onSubmit(){
+    this.icService.calcInterest({
+      start_date:this.startDate,
+      end_date:this.endDate,
+      amount:this.amount
+    }).pipe(
+      tap(console.log)
+    ).subscribe();
+  }
 }
