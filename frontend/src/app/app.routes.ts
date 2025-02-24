@@ -5,14 +5,18 @@ import { authGuard } from './guards/auth.guard';
 export const routes: Routes = [
 	{
 		path: '',
-		redirectTo: 'dashboard',
+		redirectTo: 'calculator',
 		pathMatch: 'full'
 	},{
 		path: 'login',
 		component: LoginComponent
 	},{
-		path: 'dashboard',
+		path: 'calculator',
 		canActivate: [authGuard],
-		loadComponent: () => import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent)
+		loadComponent: () => import('./pages/calculator-page/calculator-page.component').then(m => m.CalculatorPageComponent)
+	},{
+		path: 'interests',
+		canActivate: [authGuard],
+		loadComponent: () => import('./pages/interests-page/interests-page.component').then(m => m.InterestsPageComponent)
 	}
 ];
