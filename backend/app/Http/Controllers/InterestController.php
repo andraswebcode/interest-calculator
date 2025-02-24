@@ -68,10 +68,10 @@ class InterestController extends Controller
         }
 
         $interest = Interest::create([
-            'start_date' => $startDate->toDateString(),
-            'end_date'   => $endDate->toDateString(),
+            'start_date' => $start_date->toDateString(),
+            'end_date'   => $end_date->toDateString(),
             'amount'     => $amount,
-            'interest'   => round($totalInterest, 2)
+            'interest'   => round($total_interest, 2)
         ]);
 
         return response()->json($interest);
