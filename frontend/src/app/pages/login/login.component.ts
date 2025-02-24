@@ -38,7 +38,7 @@ export class LoginComponent {
 			this.authService
 				.login(this.email, this.password)
 				.pipe(
-					tap(() => this.router.navigate(['/dashboard'])),
+					tap(() => this.router.navigate(['/calculator'])),
 					catchError((error) => {
 						this.snackBar.open(error.error.message, '', { duration: 4000 });
 						throw error;
