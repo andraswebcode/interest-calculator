@@ -1,1 +1,22 @@
-<p>calculator works!</p>
+<form (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill" block>
+	<mat-label>Start Date</mat-label>
+	<input matInput [matDatepicker]="startPicker" [(ngModel)]="startDate" name="startDate" required />
+	<mat-datepicker-toggle matSuffix [for]="startPicker" />
+	<mat-datepicker #startPicker />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+	<mat-label>End Date</mat-label>
+	<input matInput [matDatepicker]="endPicker" [(ngModel)]="endDate" name="endDate" required />
+	<mat-datepicker-toggle matSuffix [for]="endPicker" />
+	<mat-datepicker #endPicker />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Amount</mat-label>
+    <input matInput [(ngModel)]="amount" name="amount" required />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Calculate</button>
+</form>
