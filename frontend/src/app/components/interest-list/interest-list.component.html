@@ -1,5 +1,13 @@
-<mat-list>
-	@for (item of interestList; track item.id){
-		<app-interest-item />
-	}
-</mat-list>
+<mat-card>
+	<mat-card-content>
+		<mat-list>
+			@for (item of interestList; track item.id){
+				<app-interest-item
+					[startDate]="item.start_date" 
+      				[endDate]="item.end_date" 
+      				[amount]="item.amount" 
+      				[interest]="item.interest" />
+			}
+		</mat-list>		
+	</mat-card-content>
+</mat-card>
