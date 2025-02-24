@@ -4,6 +4,6 @@ WORKDIR /var/www
 
 COPY . .
 
-RUN docker-php-ext-install pdo pdo_mysql zip unzip php-zip
+RUN docker-php-ext-install pdo pdo_mysql
 
 CMD ["php-fpm"]
