@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('interests', function (Blueprint $table) {
             $table->id();
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->decimal('amount', 15, 2);
+            $table->decimal('interest', 15, 2);
             $table->timestamps();
         });
     }
