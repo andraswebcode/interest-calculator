@@ -1,8 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { MatListModule } from '@angular/material/list';
+import { DateFormatPipe } from "../../pipes/date-format.pipe";
 
 @Component({
   selector: 'app-interest-item',
-  imports: [],
+  imports: [MatListModule, DateFormatPipe],
   templateUrl: './interest-item.component.html',
   styleUrl: './interest-item.component.scss'
 })
