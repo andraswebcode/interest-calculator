@@ -6,10 +6,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule } from '@angular/forms';
 import { tap } from 'rxjs';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-calculator',
-  imports: [FormsModule ,MatFormFieldModule, MatInputModule, MatButtonModule, MatDatepickerModule],
+  imports: [
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatCardModule
+  ],
   templateUrl: './calculator.component.html',
   styleUrl: './calculator.component.scss'
 })
