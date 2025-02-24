@@ -19,7 +19,8 @@ class Interest extends Model
         'start_date',
         'end_date',
         'amount',
-        'interest'
+        'interest',
+        'user_id'
     ];
 
     /**
@@ -33,7 +34,8 @@ class Interest extends Model
             'start_date' => 'date',
             'end_date' => 'date',
             'amount' => 'decimal:2',
-            'interest' => 'decimal:2'
+            'interest' => 'decimal:2',
+            'user_id' => 'integer'
         ];
     }
 }

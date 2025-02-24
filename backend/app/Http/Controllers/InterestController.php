@@ -16,7 +16,9 @@ class InterestController extends Controller
      */
     public function index()
     {
-        return response()->json([]);
+        $user_id = auth()->user()->id;
+        $interests = Interest::where('user_id', $user_id)->get();
+        return response()->json($interests);
     }
 
     /**
@@ -24,6 +26,7 @@ class InterestController extends Controller
      */
     public function store(StoreInterestRequest $request)
     {
+        $user_id = auth()->user()->id;
         $validated = $request->validated();
         $start_date = Carbon::parse($validated['start_date']);
         $end_date = Carbon::parse($validated['end_date']);
@@ -74,7 +77,8 @@ class InterestController extends Controller
             'start_date' => $start_date->toDateString(),
             'end_date'   => $end_date->toDateString(),
             'amount'     => $amount,
-            'interest'   => round($total_interest, 2)
+            'interest'   => round($total_interest, 2),
+            'user_id'    => $user_id
         ]);
 
         return response()->json($interest);
