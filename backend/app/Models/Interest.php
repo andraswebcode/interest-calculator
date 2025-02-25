@@ -20,6 +20,8 @@ class Interest extends Model
         'end_date',
         'amount',
         'interest',
+        'interest_amount',
+        'elapsed_days',
         'user_id'
     ];
 
@@ -35,6 +37,8 @@ class Interest extends Model
             'end_date' => 'date',
             'amount' => 'decimal:2',
             'interest' => 'decimal:2',
+            'interest_amount' => 'decimal:2',
+            'elapsed_days' => 'decimal:2',
             'user_id' => 'integer'
         ];
     }
