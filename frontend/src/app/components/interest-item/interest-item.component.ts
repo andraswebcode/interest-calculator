@@ -13,4 +13,6 @@ export class InterestItemComponent {
   @Input() endDate!: string;
   @Input() amount!: number;
   @Input() interest!: number;
+  @Input() interestAmount!: number;
+  @Input() elapsedDays!: number;
 }
