@@ -26,6 +26,8 @@ export class CalculatorComponent {
   endDate: string = '';
   amount: number = 0;
 
+  interest: number = 0;
+
   constructor(
     private readonly icService: InterestCalculatorService
   ){}
@@ -36,7 +38,9 @@ export class CalculatorComponent {
       end_date:this.endDate,
       amount:this.amount
     }).pipe(
-      tap(console.log)
+      tap(data => {
+        this.interest = data.interest;
+      })
     ).subscribe();
   }
 }
