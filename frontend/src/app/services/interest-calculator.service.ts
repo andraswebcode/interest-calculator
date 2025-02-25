@@ -15,8 +15,6 @@ export class InterestCalculatorService {
   ) { }
 
   calcInterest(data: Omit<Interest, 'id' | 'interest' | 'interest_amount' | 'elapsed_days'>): Observable<Interest> {
-    console.log(data);
-    
     const headers = this.getHeaders();
     return this.http.post<Interest>(this.API_URL, data, {
       headers
