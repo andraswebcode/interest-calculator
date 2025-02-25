@@ -14,7 +14,7 @@ export class InterestCalculatorService {
     private http: HttpClient
   ) { }
 
-  calcInterest(data: Omit<Interest, 'id' | 'interest'>): Observable<Interest> {
+  calcInterest(data: Omit<Interest, 'id' | 'interest' | 'interest_amount' | 'elapsed_days'>): Observable<Interest> {
     console.log(data);
     
     const headers = this.getHeaders();
